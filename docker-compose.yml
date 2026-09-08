@@ -1,0 +1,13 @@
+networks:
+  default:
+    name: healthysleep_frontend_network
+
+services:
+  front:
+    container_name: healthysleep_frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "25810:5173"
+    restart: unless-stopped

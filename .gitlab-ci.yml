@@ -1,0 +1,27 @@
+variables:
+    NAME_COMPOSE: "docker-compose"
+    PROJECT_NAME: "healthysleep_frontend"
+    GIT_CLONE_PATH: "$CI_BUILDS_DIR/frontend"
+
+stages:
+  - build
+  - deploy
+
+build-dev:
+  stage: build
+  only:
+    - develop
+  tags:
+    - healthysleep
+  script:
+    - docker-compose -f "${NAME_COMPOSE}".yml -p "${PROJECT_NAME}" build
+
+deploy-dev:
+  stage: deploy
+  only:
+    - develop
+  tags:
+    - healthysleep
+  script:
+    - docker-compose -f "${NAME_COMPOSE}".yml -p "${PROJECT_NAME}"  down
+    - docker-compose -f "${NAME_COMPOSE}".yml -p "${PROJECT_NAME}"  up -d

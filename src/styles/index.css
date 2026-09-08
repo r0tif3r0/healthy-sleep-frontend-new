@@ -1,0 +1,90 @@
+@import '@fontsource-variable/onest';
+@import '@fontsource/golos-text/400.css';
+@import '@fontsource/golos-text/500.css';
+@import '@fontsource/golos-text/600.css';
+@import '@fontsource/golos-text/700.css';
+
+@import './tokens.css';
+@import './report.css';
+
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+html {
+	color-scheme: light;
+	/* Плавный переход к якорям лендинга. */
+	scroll-behavior: smooth;
+}
+
+[data-theme='dark'] {
+	color-scheme: dark;
+}
+
+body {
+	margin: 0;
+	background-color: var(--color-canvas);
+	color: var(--color-ink);
+	font-family: var(--font-sans);
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+/*
+ * Tailwind в preflight снимает с кнопок указатель мыши. Возвращаем его всему,
+ * по чему пользователь кликает, — иначе половина интерфейса не выглядит нажимаемой.
+ */
+button:not(:disabled),
+[role='button']:not([aria-disabled='true']),
+[role='radio']:not([aria-disabled='true']),
+label:has(> input[type='file']),
+a[href] {
+	cursor: pointer;
+}
+
+button:disabled {
+	cursor: not-allowed;
+}
+
+/*
+ * Тот же preflight сбрасывает display у <source>. Внутри <picture> с display:contents
+ * они превращаются в элементы сетки и выдавливают саму картинку в следующую строку.
+ */
+source {
+	display: none;
+}
+
+/* Все числовые значения — табличными цифрами, иначе колонки «пляшут». */
+.tnum {
+	font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-brand-600);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* Полосы прокрутки внутри карточек не должны спорить с ночной палитрой. */
+.scroll-slim {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-ink-4) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

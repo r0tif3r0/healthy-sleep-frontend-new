@@ -1,0 +1,176 @@
+/*
+ * Печатная форма врачебного отчёта.
+ *
+ * Документ существует в разметке всегда, но виден только при печати:
+ * так браузер сам разбивает его на страницы и повторяет заголовок таблицы
+ * на каждом листе. Ширина окна на результат не влияет.
+ */
+
+.report {
+	display: none;
+}
+
+@media print {
+	body > *:not(#report-portal) {
+		display: none !important;
+	}
+
+	#report-portal,
+	#report-portal * {
+		visibility: visible;
+	}
+
+	.report {
+		display: block;
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		color: #0b1b3a;
+		font-family: 'Golos Text', 'Segoe UI', system-ui, sans-serif;
+		font-size: 9.5pt;
+		line-height: 1.45;
+	}
+
+	@page {
+		size: A4 portrait;
+		margin: 14mm;
+	}
+
+	.report h1 {
+		margin: 0;
+		font-family: 'Onest Variable', 'Segoe UI', system-ui, sans-serif;
+		font-size: 17pt;
+	}
+
+	.report h2 {
+		margin: 16pt 0 6pt;
+		font-family: 'Onest Variable', 'Segoe UI', system-ui, sans-serif;
+		font-size: 12pt;
+		break-after: avoid;
+	}
+
+	.report__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 16pt;
+		padding-bottom: 8pt;
+		border-bottom: 1pt solid #0b1b3a;
+	}
+
+	.report__sub {
+		margin: 4pt 0 0;
+		font-size: 11pt;
+		font-weight: 600;
+	}
+
+	.report__meta {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 2pt;
+		font-size: 9pt;
+		color: #43546f;
+		white-space: nowrap;
+	}
+
+	.report__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 6pt 20pt;
+		margin-top: 10pt;
+	}
+
+	.report__grid > div,
+	.report__note {
+		display: flex;
+		flex-direction: column;
+		gap: 1pt;
+	}
+
+	.report__note {
+		margin-top: 8pt;
+	}
+
+	.report__note p {
+		margin: 0;
+	}
+
+	.report__label {
+		font-size: 8pt;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: #5b6c88;
+	}
+
+	.report__hint {
+		margin: 0 0 4pt;
+		font-size: 8.5pt;
+		color: #5b6c88;
+	}
+
+	.report__pairs {
+		width: 100%;
+		border-collapse: collapse;
+		break-inside: avoid;
+	}
+
+	.report__pairs td {
+		padding: 3pt 0;
+		border-bottom: 0.5pt solid #dfe5ef;
+	}
+
+	.report__value {
+		text-align: right;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+
+	.report__nights {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 8pt;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* Заголовок повторяется на каждой странице — иначе колонки нечитаемы со второго листа. */
+	.report__nights thead {
+		display: table-header-group;
+	}
+
+	.report__nights th {
+		padding: 4pt 3pt;
+		text-align: left;
+		font-size: 7.5pt;
+		font-weight: 600;
+		color: #43546f;
+		border-bottom: 0.75pt solid #0b1b3a;
+	}
+
+	.report__nights td {
+		padding: 3pt;
+		border-bottom: 0.4pt solid #e6ebf3;
+	}
+
+	.report__nights tr {
+		break-inside: avoid;
+	}
+
+	.report__below {
+		font-weight: 700;
+	}
+
+	.report__below::after {
+		content: ' ·';
+	}
+
+	.report__foot {
+		margin-top: 12pt;
+		padding-top: 6pt;
+		border-top: 0.5pt solid #dfe5ef;
+		font-size: 8pt;
+		color: #5b6c88;
+	}
+}

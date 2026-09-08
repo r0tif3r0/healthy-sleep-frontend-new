@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+/*
+ * Токены «Здорового сна». Ночь — оболочка, голубой — данные,
+ * оранжевый — действие и «ниже нормы», зелёный — норма.
+ * Значения совпадают с листом дизайн-системы в канвасе макетов.
+ */
+@theme {
+	--color-night-950: #071227;
+	--color-night-900: #0b1b3a;
+	--color-night-800: #122a55;
+	--color-night-700: #173768;
+	--color-night-600: #2e5ca8;
+
+	--color-brand-600: #2563c4;
+	--color-brand-050: #eaf4fe;
+
+	--color-data-400: #38bdf8;
+	--color-data-300: #7dd3fc;
+	--color-data-200: #c7e9fb;
+
+	--color-accent-500: #f5921e;
+	--color-accent-400: #fba94c;
+	--color-accent-050: #fdf0df;
+	--color-accent-700: #9a5a05;
+
+	--color-ok: #0fa97a;
+	--color-ok-050: #e4f7f0;
+	--color-ok-700: #0a7a57;
+	--color-bad: #e1483f;
+	--color-bad-050: #fdeceb;
+	--color-bad-700: #b23129;
+	--color-moon: #f7e7b0;
+
+	--color-canvas: #f4f7fc;
+	--color-surface: #ffffff;
+	--color-surface-2: #f1f3f7;
+	--color-line: #e1e8f2;
+	--color-line-soft: #eef2f8;
+	--color-ink: #0b1b3a;
+	--color-ink-2: #5b6c88;
+	--color-ink-3: #8794a9;
+	--color-ink-4: #c9d2e0;
+
+	--font-display: 'Onest Variable', 'Segoe UI', system-ui, sans-serif;
+	--font-sans: 'Golos Text', 'Segoe UI', system-ui, sans-serif;
+
+	--radius-card: 18px;
+	--radius-card-lg: 20px;
+	--radius-control: 12px;
+
+	--shadow-card: 0 1px 2px rgb(11 27 58 / 0.05);
+	--shadow-card-lg: 0 1px 2px rgb(11 27 58 / 0.06), 0 12px 28px -14px rgb(11 27 58 / 0.22);
+	--shadow-action: 0 6px 18px -8px rgb(245 146 30 / 0.75);
+}
+
+/*
+ * Тёмная тема переопределяет только поверхности и текст.
+ * Цвета данных и семантики не меняются: врач должен читать график одинаково
+ * в обеих темах.
+ */
+[data-theme='dark'] {
+	--color-canvas: #071227;
+	--color-surface: #0f2145;
+	--color-surface-2: #122a55;
+	--color-line: #1c3866;
+	--color-line-soft: #16305c;
+	--color-ink: #e6eefb;
+	--color-ink-2: #a8bcdc;
+	--color-ink-3: #7c93bc;
+	--color-ink-4: #56709c;
+	--color-brand-050: #12294f;
+	--color-accent-050: #3a2a12;
+	--color-ok-050: #0d2e28;
+	--color-bad-050: #35191a;
+	--shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+	--shadow-card-lg: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 28px -14px rgb(0 0 0 / 0.6);
+}
