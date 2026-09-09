@@ -94,7 +94,7 @@ export default function LandingPage() {
 			<div id="top" className="relative overflow-hidden bg-night-950">
 				<NightSky seed={11} constellations={2} className="pointer-events-none absolute inset-0 h-full w-full opacity-80" />
 
-				<nav className="relative mx-auto flex h-21 max-w-[1180px] items-center gap-9 px-10">
+				<nav className="relative mx-auto flex h-21 max-w-[1180px] items-center gap-9 px-4 sm:px-8 lg:px-10">
 					<a href="#top" className="group flex items-center gap-3">
 						<span className="flex h-[42px] w-[42px] transition-transform group-hover:scale-105 flex-none items-center justify-center rounded-[14px] bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,.5)]">
 							<LogoMark size={30} />
@@ -135,7 +135,7 @@ export default function LandingPage() {
 					</div>
 				</nav>
 
-				<div className="relative mx-auto grid max-w-[1180px] items-center gap-12 px-10 pt-14 pb-19 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+				<div className="relative mx-auto grid max-w-[1180px] items-center gap-12 px-4 sm:px-8 lg:px-10 pt-14 pb-19 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
 					<div className="flex flex-col gap-6">
 						<span className="w-fit rounded-full border border-data-400/30 bg-data-400/12 px-4 py-[7px] text-[12.5px] font-semibold text-data-300">
 							Телемониторинг СИПАП-терапии
@@ -153,13 +153,13 @@ export default function LandingPage() {
 						<div className="flex flex-wrap items-center gap-3.5 pt-1">
 							<Link
 								to="/auth"
-								className="rounded-[14px] bg-accent-500 px-8 py-4 font-display text-[15.5px] font-semibold text-white shadow-action transition-all hover:-translate-y-0.5 hover:bg-accent-400 hover:shadow-[0_14px_32px_-10px_rgb(245_146_30/0.85)]"
+								className="w-full rounded-[14px] bg-accent-500 px-8 py-4 text-center font-display text-[15.5px] font-semibold text-white shadow-action sm:w-auto transition-all hover:-translate-y-0.5 hover:bg-accent-400 hover:shadow-[0_14px_32px_-10px_rgb(245_146_30/0.85)]"
 							>
 								Войти в личный кабинет
 							</Link>
 							<a
 								href="#how"
-								className="rounded-[14px] border border-[#93AEDA]/36 px-7 py-4 font-display text-[15.5px] font-semibold text-[#DCE7F8] transition-colors hover:border-[#93AEDA]/70 hover:bg-white/5"
+								className="w-full rounded-[14px] border border-[#93AEDA]/36 px-7 py-4 text-center font-display text-[15.5px] font-semibold text-[#DCE7F8] sm:w-auto transition-colors hover:border-[#93AEDA]/70 hover:bg-white/5"
 							>
 								Как загрузить данные
 							</a>
@@ -175,7 +175,7 @@ export default function LandingPage() {
 				</div>
 			</div>
 
-			<section id="how" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-10 px-10 pt-19 pb-5">
+			<section id="how" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-10 px-4 sm:px-8 lg:px-10 pt-19 pb-5">
 				<div className="flex max-w-[660px] flex-col gap-3">
 					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">
 						Три шага между картой памяти и приёмом у врача
@@ -189,7 +189,7 @@ export default function LandingPage() {
 					{STEPS.map((step, index) => (
 						<article
 							key={step.title}
-							className="flex flex-col gap-4 rounded-card-lg border border-line bg-surface p-7 transition-all hover:-translate-y-0.5 hover:border-ink-4 hover:shadow-card-lg"
+							className="flex flex-col gap-4 rounded-card-lg border border-line bg-surface p-4 transition-all sm:p-7 hover:-translate-y-0.5 hover:border-ink-4 hover:shadow-card-lg"
 						>
 							<span className="flex h-10 w-10 items-center justify-center rounded-[14px] bg-night-900 font-display text-base font-bold text-white">
 								{index + 1}
@@ -201,7 +201,7 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			<section id="roles" className="scroll-mt-8 mx-auto grid max-w-[1180px] gap-[22px] px-10 pt-16 pb-5 lg:grid-cols-2">
+			<section id="roles" className="scroll-mt-8 mx-auto grid max-w-[1180px] gap-[22px] px-4 sm:px-8 lg:px-10 pt-16 pb-5 lg:grid-cols-2">
 				<article className="flex flex-col overflow-hidden rounded-[22px] border border-line bg-surface">
 					<Illustration
 						source={illustrations.emptySleep}
@@ -209,7 +209,7 @@ export default function LandingPage() {
 						className="h-[196px] w-full object-cover"
 						style={{ objectPosition: 'center 58%' }}
 					/>
-					<div className="flex flex-col gap-4 p-7">
+					<div className="flex flex-col gap-4 p-4 sm:p-7">
 						<span className="w-fit rounded-full bg-accent-050 px-3.5 py-1.5 text-xs font-semibold text-accent-700">
 							Пациенту
 						</span>
@@ -227,7 +227,7 @@ export default function LandingPage() {
 					</div>
 				</article>
 
-				<article className="relative flex flex-col gap-4 overflow-hidden rounded-[22px] bg-night-900 p-8">
+				<article className="relative flex flex-col gap-4 overflow-hidden rounded-[22px] bg-night-900 p-4 sm:p-8">
 					<NightSky seed={23} className="pointer-events-none absolute inset-0 h-full w-full opacity-70" />
 					<span className="relative w-fit rounded-full bg-data-400/14 px-3.5 py-1.5 text-xs font-semibold text-data-300">
 						Врачу
@@ -246,7 +246,7 @@ export default function LandingPage() {
 				</article>
 			</section>
 
-			<section id="indicators" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-10 pt-16 pb-5">
+			<section id="indicators" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-4 sm:px-8 lg:px-10 pt-16 pb-5">
 				<div className="flex max-w-[620px] flex-col gap-3">
 					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">
 						{INDICATOR_COUNT} показателей терапии — из данных прибора, а не со слов
@@ -261,7 +261,7 @@ export default function LandingPage() {
 					{INDICATOR_GROUPS.map((group) => (
 						<div
 							key={group.title}
-							className="flex flex-col gap-3.5 rounded-card-lg border border-line bg-surface p-6"
+							className="flex flex-col gap-3.5 rounded-card-lg border border-line bg-surface p-4 sm:p-6"
 						>
 							<h3 className="font-display text-[15px] font-bold">{group.title}</h3>
 							<ul className="flex flex-col gap-2.5">
@@ -282,7 +282,7 @@ export default function LandingPage() {
 			 * одного блока и отличались только цветом плашки — в тёмной теме два
 			 * оттенка ночи почти совпадали, и список читался как продолжение показателей.
 			 */}
-			<section id="devices" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-10 pt-16 pb-5">
+			<section id="devices" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-4 sm:px-8 lg:px-10 pt-16 pb-5">
 				<div className="flex max-w-[620px] flex-col gap-3">
 					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">Поддерживаемые приборы</h2>
 					<p className="text-base leading-relaxed text-ink-2">
@@ -294,7 +294,7 @@ export default function LandingPage() {
 				{/* Карточки без звёздного неба: до подвала оно идёт ещё дважды подряд и перестаёт читаться как приём. */}
 				<div className="grid items-start gap-[18px] sm:grid-cols-3">
 					{DEVICE_GROUPS.map((group) => (
-						<div key={group.manufacturer} className="flex flex-col gap-3.5 rounded-card-lg bg-night-900 p-6">
+						<div key={group.manufacturer} className="flex flex-col gap-3.5 rounded-card-lg bg-night-900 p-4 sm:p-6">
 							<h3 className="font-display text-[15px] font-bold text-white">{group.manufacturer}</h3>
 							<ul className="flex flex-col gap-2.5">
 								{group.models.map((model) => (
@@ -308,8 +308,8 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			<section className="mx-auto max-w-[1180px] px-10 pt-16 pb-16">
-				<div className="relative flex flex-wrap items-center justify-between gap-10 overflow-hidden rounded-[24px] bg-night-950 p-12">
+			<section className="mx-auto max-w-[1180px] px-4 sm:px-8 lg:px-10 pt-16 pb-16">
+				<div className="relative flex flex-wrap items-center justify-between gap-10 overflow-hidden rounded-[24px] bg-night-950 p-5 sm:p-9 lg:p-12">
 					<NightSky seed={17} className="pointer-events-none absolute inset-0 h-full w-full opacity-75" />
 					<div className="relative flex max-w-[620px] flex-col gap-3.5">
 						<h2 className="font-display text-[clamp(22px,3vw,32px)] leading-tight font-bold text-balance text-white">
@@ -322,7 +322,7 @@ export default function LandingPage() {
 					</div>
 					<Link
 						to="/auth"
-						className="relative rounded-[14px] bg-accent-500 px-9 py-[17px] font-display text-base font-semibold whitespace-nowrap text-white shadow-action transition-all hover:-translate-y-0.5 hover:bg-accent-400 hover:shadow-[0_14px_32px_-10px_rgb(245_146_30/0.85)]"
+						className="relative w-full rounded-[14px] bg-accent-500 px-9 py-[17px] text-center font-display text-base font-semibold whitespace-nowrap text-white shadow-action sm:w-auto transition-all hover:-translate-y-0.5 hover:bg-accent-400 hover:shadow-[0_14px_32px_-10px_rgb(245_146_30/0.85)]"
 					>
 						Войти в кабинет
 					</Link>
@@ -338,7 +338,7 @@ export default function LandingPage() {
 			<footer className="relative overflow-hidden border-t border-white/10 bg-night-950">
 				<NightSky seed={23} constellations={2} className="pointer-events-none absolute inset-0 h-full w-full opacity-80" />
 
-				<div className="relative mx-auto flex max-w-[1180px] flex-wrap items-start justify-between gap-10 px-10 py-10">
+				<div className="relative mx-auto flex max-w-[1180px] flex-wrap items-start justify-between gap-10 px-4 sm:px-8 lg:px-10 py-10">
 					<div className="flex max-w-[440px] flex-col gap-3.5">
 						<span className="flex items-center gap-3">
 							{/* Знак на белой подложке — как в шапке и на входе: на ночном фоне он иначе теряется. */}
@@ -372,7 +372,7 @@ export default function LandingPage() {
 				</div>
 
 				<div className="relative border-t border-white/10">
-					<div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-10 gap-y-5 px-10 py-7">
+					<div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-10 gap-y-5 px-4 sm:px-8 lg:px-10 py-7">
 						<div className="flex flex-none items-center gap-7">
 							{/* Подписи у знаков нет: текст рядом называет обе организации полностью. */}
 							<img
