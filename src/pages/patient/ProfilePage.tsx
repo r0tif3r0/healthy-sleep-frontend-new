@@ -9,7 +9,7 @@ export default function ProfilePage() {
 
 	return (
 		<div className="flex flex-col gap-6">
-			<h1 className="font-display text-[27px] font-bold">Личный кабинет</h1>
+			<h1 className="font-display text-[22px] font-bold sm:text-[27px]">Личный кабинет</h1>
 
 			<QueryBoundary
 				query={profileQuery}

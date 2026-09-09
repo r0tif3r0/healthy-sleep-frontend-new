@@ -17,7 +17,7 @@ interface ChartCardProps {
 
 export function ChartCard({ title, legend, aside, height = 200, children }: ChartCardProps) {
 	return (
-		<Card className="flex flex-col gap-4 p-[22px_24px_18px]">
+		<Card padding="none" className="flex flex-col gap-4 p-4 sm:p-[22px_24px_18px]">
 			<div className="flex flex-wrap items-center justify-between gap-4">
 				<h2 className="font-display text-base font-bold">{title}</h2>
 				{aside}

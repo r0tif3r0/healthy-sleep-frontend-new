@@ -72,7 +72,7 @@ export default function PatientListPage() {
 		<div className="flex flex-col gap-[22px]">
 			<div className="flex flex-wrap items-end justify-between gap-5">
 				<div className="flex flex-col gap-1.5">
-					<h1 className="font-display text-[27px] font-bold">Мои пациенты</h1>
+					<h1 className="font-display text-[22px] font-bold sm:text-[27px]">Мои пациенты</h1>
 					<p className="tnum text-[13px] text-ink-2">под наблюдением — {total}</p>
 				</div>
 
@@ -99,9 +99,12 @@ export default function PatientListPage() {
 				/>
 			</div>
 
-			<div className="flex flex-wrap items-center gap-3">
+			{/*
+			 * Ширину задаёт обёртка, а не само поле: с иконкой поиска Input оборачивается
+			 * в свой контейнер, и класс на самом input до края его не растягивает.
+			 */}
+			<div className="max-w-md">
 				<Input
-					className="max-w-md"
 					placeholder="Поиск по фамилии, имени, почте или телефону"
 					value={search}
 					onChange={(event) => {
@@ -136,7 +139,7 @@ export default function PatientListPage() {
 				}
 			>
 				{(data) => (
-					<Card className="p-[20px_24px_8px]">
+					<Card padding="none" className="p-4 sm:p-[20px_24px_8px]">
 						<div className="hidden lg:block">
 							<PatientTable
 								patients={data.results}

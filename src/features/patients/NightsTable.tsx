@@ -21,7 +21,7 @@ const COLUMNS = [
 
 export function NightsTable({ stats }: { stats: CpapStatEntry[] }) {
 	return (
-		<Card className="flex flex-col gap-4 p-[22px_24px_12px]">
+		<Card padding="none" className="flex flex-col gap-4 p-4 sm:p-[22px_24px_12px]">
 			<CardHeader
 				title="Данные по ночам"
 				subtitle="этот же состав колонок уходит в отчёт"

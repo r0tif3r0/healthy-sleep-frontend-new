@@ -39,7 +39,7 @@ export default function LegalPage() {
 				</Link>
 			)}
 
-			<h1 className="font-display text-[27px] font-bold">Правовая информация</h1>
+			<h1 className="font-display text-[22px] font-bold sm:text-[27px]">Правовая информация</h1>
 
 			<Card className="flex items-start gap-3 border-accent-500/30 bg-accent-050">
 				<WarningIcon size={20} className="mt-px flex-none text-accent-700" />

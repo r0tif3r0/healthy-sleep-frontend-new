@@ -23,9 +23,13 @@ export function PeriodPicker({ value, onChange, availableDates, defaultMonth }: 
 	const [preset, setPreset] = useState<PresetDays | null>(30);
 
 	return (
-		<div className="flex flex-wrap items-center gap-2.5">
+		// На узком экране переключатель и календарь занимают по строке каждый:
+		// рядом они не помещались и переносились вразнобой.
+		<div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
 			<SegmentedControl
 				aria-label="Период"
+				// Сегменты делят ширину поровну только там, где строка отдана им целиком.
+				className="w-full [&>button]:flex-1 sm:w-auto sm:[&>button]:flex-none"
 				value={preset ?? 0}
 				options={PRESETS}
 				onChange={(days) => {
@@ -36,6 +40,7 @@ export function PeriodPicker({ value, onChange, availableDates, defaultMonth }: 
 
 			<Button
 				variant="secondary"
+				className="w-full sm:w-auto"
 				icon={<CalendarIcon size={16} className="text-brand-600" />}
 				onClick={() => setOpen(true)}
 			>

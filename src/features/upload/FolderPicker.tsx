@@ -68,7 +68,10 @@ export function FolderPicker({ disabled, onUploaded }: FolderPickerProps) {
 	const busy = packing || upload.isPending;
 
 	return (
-		<Card className="flex flex-col items-center gap-[18px] border-[1.5px] border-dashed border-[#B9CEEA] px-8 py-11 text-center">
+		<Card
+			padding="none"
+			className="flex flex-col items-center gap-[18px] border-[1.5px] border-dashed border-[#B9CEEA] px-5 py-8 text-center sm:px-8 sm:py-11"
+		>
 			<span className="flex h-[72px] w-[72px] items-center justify-center rounded-[22px] bg-brand-050 text-brand-600">
 				<UploadIcon size={34} />
 			</span>

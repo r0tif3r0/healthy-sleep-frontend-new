@@ -13,8 +13,8 @@ export function Card({ tone = 'surface', padding = 'md', className, children, ..
 			className={cn(
 				'rounded-card',
 				tone === 'surface' ? 'border border-line bg-surface shadow-card' : 'bg-night-900 text-white',
-				padding === 'md' && 'p-5',
-				padding === 'sm' && 'p-4',
+				padding === 'md' && 'p-4 sm:p-5',
+				padding === 'sm' && 'p-3.5 sm:p-4',
 				className,
 			)}
 			{...rest}

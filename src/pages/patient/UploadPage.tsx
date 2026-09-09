@@ -15,7 +15,8 @@ export default function UploadPage() {
 
 	return (
 		<div className="flex flex-col gap-[22px]">
-			<div className="relative h-[186px] overflow-hidden rounded-card-lg">
+			{/* Высота задана снизу, а не жёстко: на узком экране заголовок и текст занимают больше строк. */}
+			<div className="relative min-h-[168px] overflow-hidden rounded-card-lg sm:h-[186px]">
 				<Illustration
 					source={illustrations.uploadBand}
 					alt="Ночь, СИПАП-аппарат у кровати"
@@ -23,16 +24,27 @@ export default function UploadPage() {
 					style={{ objectPosition: 'center 42%' }}
 					eager
 				/>
+				{/*
+				 * Затемнение идёт слева направо только там, где текст занимает левую половину.
+				 * На узком экране он расходится во всю ширину, и градиент разворачивается вниз.
+				 */}
 				<div
-					className="absolute inset-0"
+					className="absolute inset-0 sm:hidden"
+					style={{
+						background:
+							'linear-gradient(180deg, rgba(9,20,48,.92) 0%, rgba(9,20,48,.82) 55%, rgba(9,20,48,.55) 100%)',
+					}}
+				/>
+				<div
+					className="absolute inset-0 hidden sm:block"
 					style={{
 						background:
 							'linear-gradient(90deg, rgba(9,20,48,.94) 0%, rgba(9,20,48,.78) 42%, rgba(9,20,48,.12) 100%)',
 					}}
 				/>
-				<div className="relative flex h-full max-w-[640px] flex-col justify-center gap-2.5 px-9">
-					<h1 className="font-display text-[27px] font-bold text-white">Загрузка данных с карты</h1>
-					<p className="text-[14.5px] leading-relaxed text-[#B8CBE8]">
+				<div className="relative flex h-full max-w-[640px] flex-col justify-center gap-2.5 px-5 py-7 sm:px-9 sm:py-0">
+					<h1 className="font-display text-[22px] font-bold text-white sm:text-[27px]">Загрузка данных с карты</h1>
+					<p className="text-[13.5px] leading-relaxed text-[#B8CBE8] sm:text-[14.5px]">
 						Достаньте карту памяти из аппарата, вставьте её в компьютер и укажите папку целиком —
 						остальное сделаем мы.
 					</p>

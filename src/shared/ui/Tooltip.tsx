@@ -33,7 +33,7 @@ export function Tooltip({ label, children, placement = 'top', className }: Toolt
 					id={id}
 					role="tooltip"
 					className={cn(
-						'absolute left-1/2 z-40 w-64 -translate-x-1/2 rounded-xl bg-night-900 px-3.5 py-2.5 text-xs leading-relaxed text-white shadow-card-lg',
+						'absolute left-1/2 z-40 w-[min(16rem,calc(100vw-2.5rem))] -translate-x-1/2 rounded-xl bg-night-900 px-3.5 py-2.5 text-xs leading-relaxed text-white shadow-card-lg',
 						placement === 'top' ? 'bottom-full mb-2' : 'top-full mt-2',
 					)}
 				>

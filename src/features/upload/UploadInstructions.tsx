@@ -17,7 +17,7 @@ const STEPS = [
 
 export function UploadInstructions() {
 	return (
-		<Card className="flex flex-col gap-[18px] p-[22px_24px]">
+		<Card padding="none" className="flex flex-col gap-[18px] p-4 sm:p-[22px_24px]">
 			<CardHeader title="Как снять данные с аппарата" />
 
 			<ol className="flex flex-col gap-4">

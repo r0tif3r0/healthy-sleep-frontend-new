@@ -45,7 +45,7 @@ export function Modal({ open, onClose, title, description, footer, size = 'sm', 
 
 	return createPortal(
 		<div
-			className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-night-950/55 p-4 backdrop-blur-[2px]"
+			className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-night-950/55 p-4 backdrop-blur-[2px] sm:items-center"
 			onMouseDown={(event) => {
 				if (event.target === event.currentTarget) onClose();
 			}}
@@ -56,7 +56,7 @@ export function Modal({ open, onClose, title, description, footer, size = 'sm', 
 				aria-modal="true"
 				tabIndex={-1}
 				className={cn(
-					'w-full rounded-card-lg border border-line bg-surface p-6 shadow-card-lg outline-none',
+					'w-full rounded-card-lg border border-line bg-surface p-5 shadow-card-lg outline-none sm:p-6',
 					SIZES[size],
 				)}
 			>

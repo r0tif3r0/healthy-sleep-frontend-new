@@ -112,7 +112,7 @@ function Header({
 }) {
 	return (
 		<div className="flex flex-col gap-2">
-			<h1 className="font-display text-[27px] font-bold">Статистика терапии</h1>
+			<h1 className="font-display text-[22px] font-bold sm:text-[27px]">Статистика терапии</h1>
 			<p className="flex flex-wrap items-center gap-2.5 text-[13px] text-ink-2">
 				<DeviceIcon size={15} className="text-ink-3" />
 				{device ?? 'Прибор не указан'}

@@ -57,11 +57,11 @@ export default function PatientDetailPage() {
 				skeleton={<SkeletonCard lines={4} />}
 			>
 				{(patient) => (
-					<Card className="flex flex-col gap-5 p-6">
+					<Card padding="none" className="flex flex-col gap-5 p-4 sm:p-6">
 						<div className="flex flex-wrap items-start gap-4">
 							<Avatar person={patient} size={56} className="rounded-[18px]" />
 							<div className="flex min-w-0 flex-col gap-1">
-								<h1 className="font-display text-[23px] font-bold">{fullName(patient)}</h1>
+								<h1 className="font-display text-[20px] font-bold sm:text-[23px]">{fullName(patient)}</h1>
 								{/* Собираем подпись из того, что есть: пустые части не превращаются в «Нет данных». */}
 								<span className="tnum text-[13px] text-ink-2">
 									{[
@@ -74,12 +74,14 @@ export default function PatientDetailPage() {
 								</span>
 							</div>
 
-							<div className="ml-auto flex flex-none items-center gap-2.5">
-								<Button variant="secondary" onClick={() => setUnlinkOpen(true)}>
+							{/* На узком экране кнопки занимают строку целиком: рядом с именем они не помещались и уезжали за край. */}
+							<div className="flex w-full items-center gap-2.5 sm:ml-auto sm:w-auto sm:flex-none">
+								<Button variant="secondary" className="flex-1 sm:flex-none" onClick={() => setUnlinkOpen(true)}>
 									Отвязать
 								</Button>
 								<Button
 									variant="primary"
+									className="flex-1 sm:flex-none"
 									icon={<DownloadIcon size={17} />}
 									disabled={!canExport}
 									title={canExport ? undefined : 'За выбранный период нет данных — выгружать нечего'}

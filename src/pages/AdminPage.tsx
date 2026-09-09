@@ -19,7 +19,7 @@ export default function AdminPage() {
 
 	return (
 		<div className="flex flex-col gap-6">
-			<h1 className="font-display text-[27px] font-bold">Управление пользователями</h1>
+			<h1 className="font-display text-[22px] font-bold sm:text-[27px]">Управление пользователями</h1>
 
 			<Card className="flex max-w-2xl flex-col gap-5">
 				<span className="flex h-12 w-12 items-center justify-center rounded-[15px] bg-brand-050 text-brand-600">

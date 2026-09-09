@@ -18,7 +18,7 @@ export function Sidebar({ onLogout }: { onLogout: () => void }) {
 		 * страницы, поэтому на статистике за 90 дней небо растягивалось иначе,
 		 * чем за неделю. Заодно меню не уезжает вверх на длинных страницах.
 		 */
-		<aside className="sticky top-0 flex h-screen w-[248px] flex-none flex-col overflow-hidden bg-night-900">
+		<aside className="sticky top-0 hidden h-screen w-[248px] flex-none flex-col overflow-hidden bg-night-900 lg:flex">
 			{/*
 			 * Небо на всю высоту панели, а не одно созвездие под меню: тогда фон пункта
 			 * при наведении не «отрезает» кусок рисунка — перекрывать нечего.
