@@ -38,6 +38,19 @@ const STYLE = `
 }
 .demo-bar button:hover { background: #173768; }
 .demo-bar button[data-reset] { border-color: #3a2a12; background: transparent; color: #fba94c; }
+/*
+ * Ниже 1024px низ экрана занимает нижнее меню кабинета — на той же ширине,
+ * на которой прячется боковая панель. Плашка поднимается над меню и жмётся
+ * к краям, иначе она закрывает кнопки разделов.
+ */
+@media (max-width: 1023px) {
+	.demo-bar {
+		right: 12px; left: 12px; bottom: calc(68px + env(safe-area-inset-bottom));
+		justify-content: center; gap: 8px; padding: 9px 12px; max-width: none;
+		font-size: 12px;
+	}
+	.demo-bar button { padding: 5px 10px; }
+}
 @media print { .demo-bar { display: none; } }
 `;
 
