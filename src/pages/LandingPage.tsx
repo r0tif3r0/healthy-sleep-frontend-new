@@ -34,30 +34,56 @@ const DOCTOR_POINTS = [
 	'Прикрепление пациента по адресу электронной почты',
 ];
 
-const INDICATORS = [
-	'Приверженность лечению',
-	'Длительность использования',
-	'Средняя длительность',
-	'Даты использования',
-	'Количество дней с данными',
-	'Индекс AHI',
-	'Индекс обструктивных апноэ',
-	'Индекс центральных апноэ',
-	'Индекс гипопноэ',
-	'Утечки воздуха',
-	'Давление на маске',
-	'Минимальное и максимальное давление',
-	'Длительность плавного старта',
-	'Облегчение выдоха (EPR)',
+/*
+ * Показатели разложены по группам, а не одним списком: семнадцать пунктов подряд
+ * не читаются. Группы близки по объёму — 6, 5 и 6, — иначе короткая карточка
+ * стоит полупустой рядом с длинными.
+ */
+const INDICATOR_GROUPS = [
+	{
+		title: 'Использование и приверженность',
+		items: [
+			'Даты использования',
+			'Количество выбранных дней',
+			'Количество дней использования',
+			'Длительность использования',
+			'Средняя длительность использования',
+			'Приверженность лечению',
+		],
+	},
+	{
+		title: 'Дыхательные события',
+		items: [
+			'Индекс респираторных событий (AHI)',
+			'Индекс обструктивных апноэ (OAI)',
+			'Индекс центральных апноэ (CAI)',
+			'Индекс неклассифицированных апноэ (UAI)',
+			'Индекс гипопноэ (HI)',
+		],
+	},
+	{
+		title: 'Давление, утечки и настройки',
+		items: [
+			'Давление',
+			'Утечки воздуха',
+			'Минимальное давление',
+			'Максимальное давление',
+			'Длительность плавного старта (Ramp)',
+			'Облегчение выдоха (EPR)',
+		],
+	},
 ];
 
-const DEVICES = [
-	'ResMed AirSense 11 AutoSet',
-	'ResMed AirSense S10',
-	'ResMed S9 AutoSet',
-	'ResMed AirCurve 10',
-	'ResVent iBreeze 20A Pro',
-	'Weinmann Prisma 20A',
+const INDICATOR_COUNT = INDICATOR_GROUPS.reduce((total, group) => total + group.items.length, 0);
+
+/** Приборы сгруппированы по производителю: у каждого своя раскладка файлов на карте. */
+const DEVICE_GROUPS = [
+	{
+		manufacturer: 'ResMed',
+		models: ['AirSense 11 AutoSet', 'AirSense S10', 'S9 AutoSet', 'AirCurve 10'],
+	},
+	{ manufacturer: 'ResVent', models: ['iBreeze 20A Pro'] },
+	{ manufacturer: 'Weinmann', models: ['Prisma 20A'] },
 ];
 
 export default function LandingPage() {
@@ -79,9 +105,10 @@ export default function LandingPage() {
 						</span>
 					</a>
 
-					<div className="ml-5 hidden items-center gap-7 text-sm text-[#A8BCDC] lg:flex">
+					<div className="ml-5 hidden items-center gap-6 text-sm text-[#A8BCDC] lg:flex">
 						<a href="#how" className="transition-colors hover:text-white">Как это работает</a>
 						<a href="#roles" className="transition-colors hover:text-white">Пациенту и врачу</a>
+						<a href="#indicators" className="transition-colors hover:text-white">Показатели</a>
 						<a href="#devices" className="transition-colors hover:text-white">Приборы</a>
 					</div>
 
@@ -219,10 +246,10 @@ export default function LandingPage() {
 				</article>
 			</section>
 
-			<section id="devices" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-10 pt-16 pb-5">
+			<section id="indicators" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-10 pt-16 pb-5">
 				<div className="flex max-w-[620px] flex-col gap-3">
 					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">
-						14 показателей терапии — из данных прибора, а не со слов
+						{INDICATOR_COUNT} показателей терапии — из данных прибора, а не со слов
 					</h2>
 					<p className="text-base leading-relaxed text-ink-2">
 						Всё, что записал аппарат за ночь, разбирается и приводится к единому виду — независимо
@@ -230,24 +257,55 @@ export default function LandingPage() {
 					</p>
 				</div>
 
-				<ul className="flex flex-wrap gap-2.5">
-					{INDICATORS.map((item) => (
-						<li
-							key={item}
-							className="rounded-full border border-line bg-surface px-4 py-2.5 text-[13.5px] text-ink-2 transition-colors hover:border-ink-4 hover:text-ink"
+				<div className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-3">
+					{INDICATOR_GROUPS.map((group) => (
+						<div
+							key={group.title}
+							className="flex flex-col gap-3.5 rounded-card-lg border border-line bg-surface p-6"
 						>
-							{item}
-						</li>
+							<h3 className="font-display text-[15px] font-bold">{group.title}</h3>
+							<ul className="flex flex-col gap-2.5">
+								{group.items.map((item) => (
+									<li key={item} className="flex items-start gap-2.5 text-[13.5px] leading-snug text-ink-2">
+										<span className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-data-400" />
+										{item}
+									</li>
+								))}
+							</ul>
+						</div>
 					))}
-				</ul>
+				</div>
+			</section>
 
-				<ul className="flex flex-wrap gap-2.5 pt-3">
-					{DEVICES.map((item) => (
-						<li key={item} className="rounded-full bg-night-900 px-4 py-2.5 text-[13.5px] text-[#DCE7F8] transition-colors hover:bg-night-800">
-							{item}
-						</li>
+			{/*
+			 * Приборы отдельной секцией: раньше они шли следом за показателями внутри
+			 * одного блока и отличались только цветом плашки — в тёмной теме два
+			 * оттенка ночи почти совпадали, и список читался как продолжение показателей.
+			 */}
+			<section id="devices" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-10 pt-16 pb-5">
+				<div className="flex max-w-[620px] flex-col gap-3">
+					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">Поддерживаемые приборы</h2>
+					<p className="text-base leading-relaxed text-ink-2">
+						От модели зависит, как разбирается архив с карты: у каждого производителя своя раскладка
+						файлов. Прибор указывается в личном кабинете один раз.
+					</p>
+				</div>
+
+				{/* Карточки без звёздного неба: до подвала оно идёт ещё дважды подряд и перестаёт читаться как приём. */}
+				<div className="grid items-start gap-[18px] sm:grid-cols-3">
+					{DEVICE_GROUPS.map((group) => (
+						<div key={group.manufacturer} className="flex flex-col gap-3.5 rounded-card-lg bg-night-900 p-6">
+							<h3 className="font-display text-[15px] font-bold text-white">{group.manufacturer}</h3>
+							<ul className="flex flex-col gap-2.5">
+								{group.models.map((model) => (
+									<li key={model} className="text-[13.5px] leading-snug text-[#B8CBE8]">
+										{model}
+									</li>
+								))}
+							</ul>
+						</div>
 					))}
-				</ul>
+				</div>
 			</section>
 
 			<section className="mx-auto max-w-[1180px] px-10 pt-16 pb-16">
@@ -300,6 +358,7 @@ export default function LandingPage() {
 						<FooterColumn title="Сервис">
 							<Link to="/auth">Вход в кабинет</Link>
 							<a href="#how">Как загрузить данные</a>
+							<a href="#indicators">Какие показатели видны</a>
 							<a href="#devices">Поддерживаемые приборы</a>
 						</FooterColumn>
 						<FooterColumn title="Документы">
