@@ -2,12 +2,17 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { illustrations } from '@/assets/illustrations';
 import { LogoMark } from '@/shared/icons';
+import { DEVICE_COUNT, INDICATOR_COUNT } from '@/shared/lib/catalog';
 import { Illustration } from '@/shared/ui';
 
+/*
+ * Числа берутся из общего перечня, а не пишутся строкой: пока они стояли здесь
+ * и на лендинге по отдельности, показателей тут осталось 14, а там уже стало 17.
+ */
 const FACTS = [
-	{ value: '6', label: 'моделей приборов' },
+	{ value: String(DEVICE_COUNT), label: 'моделей приборов' },
 	{ value: '365', label: 'ночей в памяти' },
-	{ value: '14', label: 'показателей терапии' },
+	{ value: String(INDICATOR_COUNT), label: 'показателей терапии' },
 ];
 
 /** Ночная половина слева — та же иллюстрация, что и в макетах; форма справа. */

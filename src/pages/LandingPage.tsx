@@ -4,6 +4,7 @@ import fsiLogo from '@/assets/fsi_logo_on_dark.svg';
 import putpLogo from '@/assets/putp_logo.svg';
 import { useTheme } from '@/app/providers/useTheme';
 import { CheckIcon, LogoMark, MoonIcon, SunIcon } from '@/shared/icons';
+import { DEVICE_GROUPS, INDICATOR_COUNT, INDICATOR_GROUPS } from '@/shared/lib/catalog';
 import { Illustration, NightSky } from '@/shared/ui';
 
 const STEPS = [
@@ -32,58 +33,6 @@ const DOCTOR_POINTS = [
 	'Карточка пациента: графики за период и таблица по каждой ночи',
 	'Отчёт с русскими подписями и единицами — на печать или в PDF',
 	'Прикрепление пациента по адресу электронной почты',
-];
-
-/*
- * Показатели разложены по группам, а не одним списком: семнадцать пунктов подряд
- * не читаются. Группы близки по объёму — 6, 5 и 6, — иначе короткая карточка
- * стоит полупустой рядом с длинными.
- */
-const INDICATOR_GROUPS = [
-	{
-		title: 'Использование и приверженность',
-		items: [
-			'Даты использования',
-			'Количество выбранных дней',
-			'Количество дней использования',
-			'Длительность использования',
-			'Средняя длительность использования',
-			'Приверженность лечению',
-		],
-	},
-	{
-		title: 'Дыхательные события',
-		items: [
-			'Индекс респираторных событий (AHI)',
-			'Индекс обструктивных апноэ (OAI)',
-			'Индекс центральных апноэ (CAI)',
-			'Индекс неклассифицированных апноэ (UAI)',
-			'Индекс гипопноэ (HI)',
-		],
-	},
-	{
-		title: 'Давление, утечки и настройки',
-		items: [
-			'Давление',
-			'Утечки воздуха',
-			'Минимальное давление',
-			'Максимальное давление',
-			'Длительность плавного старта (Ramp)',
-			'Облегчение выдоха (EPR)',
-		],
-	},
-];
-
-const INDICATOR_COUNT = INDICATOR_GROUPS.reduce((total, group) => total + group.items.length, 0);
-
-/** Приборы сгруппированы по производителю: у каждого своя раскладка файлов на карте. */
-const DEVICE_GROUPS = [
-	{
-		manufacturer: 'ResMed',
-		models: ['AirSense 11 AutoSet', 'AirSense S10', 'S9 AutoSet', 'AirCurve 10'],
-	},
-	{ manufacturer: 'ResVent', models: ['iBreeze 20A Pro'] },
-	{ manufacturer: 'Weinmann', models: ['Prisma 20A'] },
 ];
 
 export default function LandingPage() {
