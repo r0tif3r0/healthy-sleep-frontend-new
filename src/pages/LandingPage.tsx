@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { illustrations } from '@/assets/illustrations';
-import { CheckIcon, LogoMark } from '@/shared/icons';
+import fsiLogo from '@/assets/fsi_logo_on_dark.svg';
+import putpLogo from '@/assets/putp_logo.svg';
+import { useTheme } from '@/app/providers/useTheme';
+import { CheckIcon, LogoMark, MoonIcon, SunIcon } from '@/shared/icons';
 import { Illustration, NightSky } from '@/shared/ui';
 
 const STEPS = [
@@ -58,6 +61,8 @@ const DEVICES = [
 ];
 
 export default function LandingPage() {
+	const { theme, toggle } = useTheme();
+
 	return (
 		<div className="bg-canvas">
 			<div id="top" className="relative overflow-hidden bg-night-950">
@@ -68,7 +73,10 @@ export default function LandingPage() {
 						<span className="flex h-[42px] w-[42px] transition-transform group-hover:scale-105 flex-none items-center justify-center rounded-[14px] bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,.5)]">
 							<LogoMark size={30} />
 						</span>
-						<span className="font-display text-[17px] font-bold text-white">Здоровый сон</span>
+						{/* На узком экране название прячется: со знаком, темой и «Войти» оно переносилось на вторую строку. */}
+						<span className="hidden font-display text-[17px] font-bold whitespace-nowrap text-white sm:inline">
+							Здоровый сон
+						</span>
 					</a>
 
 					<div className="ml-5 hidden items-center gap-7 text-sm text-[#A8BCDC] lg:flex">
@@ -77,12 +85,27 @@ export default function LandingPage() {
 						<a href="#devices" className="transition-colors hover:text-white">Приборы</a>
 					</div>
 
-					<Link
-						to="/auth"
-						className="ml-auto rounded-control bg-accent-500 px-6 py-[11px] font-display text-sm font-semibold text-white shadow-action transition-colors hover:bg-accent-400"
-					>
-						Войти
-					</Link>
+					<div className="ml-auto flex flex-none items-center gap-2.5">
+						{/*
+						 * Тему можно было переключить только внутри кабинета: гость,
+						 * которому светлая страница режет глаза, до этой кнопки не доходил.
+						 */}
+						<button
+							type="button"
+							onClick={toggle}
+							aria-label={theme === 'dark' ? 'Светлая тема' : 'Тёмная тема'}
+							className="flex h-11 w-11 flex-none items-center justify-center rounded-control text-[#A8BCDC] transition-colors hover:bg-white/[0.08] hover:text-white"
+						>
+							{theme === 'dark' ? <SunIcon size={20} /> : <MoonIcon size={20} />}
+						</button>
+
+						<Link
+							to="/auth"
+							className="rounded-control bg-accent-500 px-5 py-[11px] font-display text-sm font-semibold text-white shadow-action transition-colors hover:bg-accent-400 sm:px-6"
+						>
+							Войти
+						</Link>
+					</div>
 				</nav>
 
 				<div className="relative mx-auto grid max-w-[1180px] items-center gap-12 px-10 pt-14 pb-19 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
@@ -248,14 +271,25 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			<footer className="border-t border-line bg-surface">
-				<div className="mx-auto flex max-w-[1180px] flex-wrap items-start justify-between gap-10 px-10 py-10">
-					<div className="flex max-w-[440px] flex-col gap-3">
+			{/*
+			 * Подвал ночной в обеих темах, как шапка: оба знака поддержки рассчитаны
+			 * на тёмную подложку, а светлый подвал заставлял бы держать для них
+			 * отдельную плашку посреди страницы.
+			 */}
+			{/* Граница нужна тёмной теме: там холст страницы того же цвета, что и подвал. */}
+			<footer className="relative overflow-hidden border-t border-white/10 bg-night-950">
+				<NightSky seed={23} constellations={2} className="pointer-events-none absolute inset-0 h-full w-full opacity-80" />
+
+				<div className="relative mx-auto flex max-w-[1180px] flex-wrap items-start justify-between gap-10 px-10 py-10">
+					<div className="flex max-w-[440px] flex-col gap-3.5">
 						<span className="flex items-center gap-3">
-							<LogoMark size={34} className="flex-none" />
-							<span className="font-display text-[15px] font-bold">Здоровый сон</span>
+							{/* Знак на белой подложке — как в шапке и на входе: на ночном фоне он иначе теряется. */}
+							<span className="flex h-11 w-11 flex-none items-center justify-center rounded-[14px] bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,.5)]">
+								<LogoMark size={31} />
+							</span>
+							<span className="font-display text-[15px] font-bold text-white">Здоровый сон</span>
 						</span>
-						<p className="text-[13px] leading-relaxed text-ink-3">
+						<p className="text-[13px] leading-relaxed text-[#7C93BC]">
 							ООО «СИПАП ЦЕНТР» · ОГРН 1267800061462 · ИНН 7801753538
 							<br />
 							199106, Санкт-Петербург, площадь Морской Славы, д. 1, литера А
@@ -277,6 +311,34 @@ export default function LandingPage() {
 						</FooterColumn>
 					</div>
 				</div>
+
+				<div className="relative border-t border-white/10">
+					<div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-10 gap-y-5 px-10 py-7">
+						<div className="flex flex-none items-center gap-7">
+							{/* Подписи у знаков нет: текст рядом называет обе организации полностью. */}
+							<img
+								src={fsiLogo}
+								alt=""
+								loading="lazy"
+								decoding="async"
+								className="h-11 w-auto sm:h-14"
+							/>
+							<img
+								src={putpLogo}
+								alt=""
+								loading="lazy"
+								decoding="async"
+								className="h-[60px] w-auto sm:h-[76px]"
+							/>
+						</div>
+
+						<p className="max-w-[680px] text-[12.5px] leading-relaxed text-[#8FA4C6]">
+							Проект реализован при поддержке Фонда содействия инновациям в рамках программы
+							«Студенческий стартап» мероприятия «Платформа университетского технологического
+							предпринимательства» федерального проекта «Технологии»
+						</p>
+					</div>
+				</div>
 			</footer>
 		</div>
 	);
@@ -285,8 +347,8 @@ export default function LandingPage() {
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
 	return (
 		<div className="flex flex-col gap-2.5">
-			<span className="text-[11.5px] font-semibold tracking-[0.05em] text-ink-3 uppercase">{title}</span>
-			<div className="flex flex-col items-start gap-2.5 text-[13.5px] text-ink-2 [&_a]:transition-colors [&_a:hover]:text-brand-600">{children}</div>
+			<span className="text-[11.5px] font-semibold tracking-[0.05em] text-[#7C93BC] uppercase">{title}</span>
+			<div className="flex flex-col items-start gap-2.5 text-[13.5px] text-[#A8BCDC] [&_a]:transition-colors [&_a:hover]:text-white">{children}</div>
 		</div>
 	);
 }
