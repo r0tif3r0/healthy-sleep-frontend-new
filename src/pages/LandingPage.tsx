@@ -119,11 +119,16 @@ export default function LandingPage() {
 			</div>
 
 			<section id="how" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-10 px-4 sm:px-8 lg:px-10 pt-19 pb-5">
-				<div className="flex max-w-[660px] flex-col gap-3">
-					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">
+				{/*
+				 * Ширина задана заголовку и абзацу по отдельности: заголовок длинный
+				 * и на 660px ломался на три строки, а абзацу широкая мера только
+				 * мешает читаться.
+				 */}
+				<div className="flex flex-col gap-3">
+					<h2 className="max-w-[900px] font-display text-[clamp(24px,3vw,34px)] font-bold text-balance">
 						Три шага между картой памяти вашего СИПАП-аппарата и приема у врача
 					</h2>
-					<p className="text-base leading-relaxed text-ink-2">
+					<p className="max-w-[660px] text-base leading-relaxed text-ink-2">
 						Не нужно ничего распаковывать, переименовывать и пересылать электронной почтой. Вместо этого: карта — компьютер — кнопка
 					</p>
 				</div>
@@ -245,23 +250,23 @@ export default function LandingPage() {
 			</section>
 
 			<section className="mx-auto max-w-[1180px] px-4 sm:px-8 lg:px-10 pt-16 pb-16">
-				<div className="relative flex flex-wrap items-center justify-between gap-10 overflow-hidden rounded-[24px] bg-night-950 p-5 sm:p-9 lg:p-12">
+				{/*
+				 * Блок по центру: пояснение из него убрали, а призыву с кнопкой в двух
+				 * колонках нечем занять правую половину — она либо пустует, либо кнопка
+				 * липнет к тексту. На узком экране текст остаётся слева: пять строк
+				 * вразбежку по обоим краям читаются хуже.
+				 */}
+				<div className="relative flex flex-col items-start gap-7 overflow-hidden rounded-[24px] bg-night-950 p-5 sm:items-center sm:p-9 sm:text-center lg:p-12">
 					<NightSky seed={17} className="pointer-events-none absolute inset-0 h-full w-full opacity-75" />
-					<div className="relative flex max-w-[620px] flex-col gap-3.5">
-						<h2 className="font-display text-[clamp(22px,3vw,32px)] leading-tight font-bold text-balance text-white">
-							Зарегистрируйся на сайте СИПАП-ЦЕНТР и держи под контролем эффективность своей СИПАП-терапии. 
-							Вместе с врачом.
-						</h2>
-						{/* <p className="text-base leading-relaxed text-[#B8CBE8]">
-							Если вы уже проходите СИПАП-терапию в центре — войдите с почтой, на которую оформлено
-							наблюдение. Врачей и администраторов заводит администратор центра.
-						</p> */}
-					</div>
+					<h2 className="relative max-w-[780px] font-display text-[clamp(22px,3vw,32px)] leading-tight font-bold text-balance text-white">
+						Зарегистрируйся на сайте СИПАП-ЦЕНТР и держи под контролем эффективность своей
+						СИПАП-терапии. Вместе с врачом.
+					</h2>
 					<Link
-						to="/auth"
+						to="/auth?tab=register"
 						className="relative w-full rounded-[14px] bg-accent-500 px-9 py-[17px] text-center font-display text-base font-semibold whitespace-nowrap text-white shadow-action sm:w-auto transition-all hover:-translate-y-0.5 hover:bg-accent-400 hover:shadow-[0_14px_32px_-10px_rgb(245_146_30/0.85)]"
 					>
-						Войти в кабинет
+						Зарегистрироваться
 					</Link>
 				</div>
 			</section>

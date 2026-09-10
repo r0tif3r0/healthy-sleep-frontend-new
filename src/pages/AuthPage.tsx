@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { AuthLayout } from '@/features/auth/AuthLayout';
 import { LoginForm } from '@/features/auth/LoginForm';
 import { RegisterForm } from '@/features/auth/RegisterForm';
@@ -7,8 +7,17 @@ import { cn } from '@/shared/lib/cn';
 
 type Tab = 'login' | 'register';
 
+/**
+ * Вкладка живёт в адресе, а не в состоянии компонента: с лендинга зовут
+ * регистрироваться, и ссылка должна открывать сразу регистрацию, а не вход.
+ * Заодно выбор переживает перезагрузку и его можно переслать.
+ */
 export default function AuthPage() {
-	const [tab, setTab] = useState<Tab>('login');
+	const [params, setParams] = useSearchParams();
+	const tab: Tab = params.get('tab') === 'register' ? 'register' : 'login';
+
+	const setTab = (value: Tab) =>
+		setParams(value === 'register' ? { tab: 'register' } : {}, { replace: true });
 
 	return (
 		<AuthLayout>
