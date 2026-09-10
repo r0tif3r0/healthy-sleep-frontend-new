@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/app/providers/useAuth';
 import { ChevronLeftIcon } from '@/shared/icons';
-import { POLICY_SECTIONS, POLICY_TITLE, POLICY_URL, type PolicyBlock } from '@/shared/lib/privacyPolicy';
+import { POLICY_SECTIONS, POLICY_TITLE, type PolicyBlock } from '@/shared/lib/privacyPolicy';
 import { Card } from '@/shared/ui';
 
 function Block({ block }: { block: PolicyBlock }) {
@@ -63,12 +63,8 @@ export default function LegalPage() {
 				</Link>
 			)}
 
-			<div className="flex flex-col gap-2">
-				<h1 className="font-display text-[22px] font-bold sm:text-[27px]">{POLICY_TITLE}</h1>
-				<p className="text-[13px] text-ink-3">
-					Актуальная версия — {POLICY_URL}
-				</p>
-			</div>
+			{/* Адрес политики не дублируем: он есть в самом документе, в п. 12.3. */}
+			<h1 className="font-display text-[22px] font-bold sm:text-[27px]">{POLICY_TITLE}</h1>
 
 			{POLICY_SECTIONS.map((section) => (
 				<Card key={section.title} className="flex flex-col gap-3">

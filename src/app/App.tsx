@@ -4,6 +4,7 @@ import { QueryProvider } from './providers/QueryProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { ToastProvider } from '@/shared/ui';
 import { AppRoutes } from './router/routes';
+import { ScrollToTop } from './router/ScrollToTop';
 
 function App() {
 	return (
@@ -11,6 +12,7 @@ function App() {
 			<ThemeProvider>
 				<ToastProvider>
 					<BrowserRouter>
+						<ScrollToTop />
 						<AuthProvider>
 							<AppRoutes />
 						</AuthProvider>

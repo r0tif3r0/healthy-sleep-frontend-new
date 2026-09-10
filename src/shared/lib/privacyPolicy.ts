@@ -17,8 +17,6 @@ export interface PolicySection {
 
 export const POLICY_TITLE = 'Политика в отношении обработки персональных данных';
 
-export const POLICY_URL = 'https://cpap-centre.ru/privacy';
-
 export const POLICY_SECTIONS: PolicySection[] = [
 	{
 		title: '1. Общие положения',
