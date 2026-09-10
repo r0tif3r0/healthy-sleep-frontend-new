@@ -1,37 +1,61 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/app/providers/useAuth';
-import { ChevronLeftIcon, WarningIcon } from '@/shared/icons';
+import { ChevronLeftIcon } from '@/shared/icons';
+import { POLICY_SECTIONS, POLICY_TITLE, POLICY_URL, type PolicyBlock } from '@/shared/lib/privacyPolicy';
 import { Card } from '@/shared/ui';
 
-const SECTIONS = [
-	{
-		title: '1. Общие положения',
-		paragraphs: [
-			'Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности.',
-			'Оператор ставит своей важнейшей целью соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.',
-		],
-	},
-	{
-		title: '2. Состав обрабатываемых данных',
-		paragraphs: [
-			'Сервис обрабатывает данные учётной записи: фамилию, имя, отчество, дату рождения, адрес электронной почты, номер телефона, а также сведения о модели СИПАП-аппарата.',
-			'Отдельно обрабатываются показатели терапии, считанные с карты памяти прибора: длительность использования, индексы дыхательных событий, утечки, давление и настройки аппарата с привязкой к дате.',
-		],
-	},
-	{
-		title: '3. Цели обработки',
-		paragraphs: [
-			'Показатели терапии обрабатываются для того, чтобы пациент и его лечащий врач могли оценивать эффективность лечения в динамике.',
-			'Доступ врача к данным пациента возникает только после того, как пациент прикреплён к врачу, и прекращается сразу после отвязки.',
-		],
-	},
-];
+function Block({ block }: { block: PolicyBlock }) {
+	if (block.kind === 'text') {
+		return <p className="text-[14px] leading-relaxed text-ink-2">{block.text}</p>;
+	}
+
+	if (block.kind === 'list') {
+		return (
+			<ul className="flex flex-col gap-2">
+				{block.items.map((item) => (
+					<li key={item} className="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
+						<span className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-ink-4" />
+						{item}
+					</li>
+				))}
+			</ul>
+		);
+	}
+
+	/*
+	 * Таблица целей — определениями, а не <table>: две колонки на узком экране
+	 * съезжают в нечитаемую кашу, а строк здесь всего четыре.
+	 */
+	return (
+		<dl className="flex flex-col gap-4">
+			{block.rows.map((row) => (
+				<div key={row.label} className="flex flex-col gap-1.5 border-t border-line-soft pt-3 first:border-t-0 first:pt-0">
+					<dt className="text-[11.5px] font-semibold tracking-[0.04em] text-ink-3 uppercase">{row.label}</dt>
+					<dd className="flex flex-col gap-1.5">
+						{row.items.map((item) => (
+							<span key={item} className="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
+								{row.items.length > 1 && <span className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-ink-4" />}
+								{item}
+							</span>
+						))}
+					</dd>
+				</div>
+			))}
+		</dl>
+	);
+}
 
 export default function LegalPage() {
 	const { isAuthenticated } = useAuth();
 
 	return (
-		<div className={isAuthenticated ? 'flex flex-col gap-6' : 'mx-auto flex max-w-[860px] flex-col gap-6 px-6 py-12'}>
+		<div
+			className={
+				isAuthenticated
+					? 'flex flex-col gap-6'
+					: 'mx-auto flex max-w-[860px] flex-col gap-6 px-4 py-12 sm:px-6'
+			}
+		>
 			{!isAuthenticated && (
 				<Link to="/" className="inline-flex w-fit items-center gap-2 text-[13.5px] text-brand-600 hover:underline">
 					<ChevronLeftIcon size={16} />
@@ -39,24 +63,18 @@ export default function LegalPage() {
 				</Link>
 			)}
 
-			<h1 className="font-display text-[22px] font-bold sm:text-[27px]">Правовая информация</h1>
-
-			<Card className="flex items-start gap-3 border-accent-500/30 bg-accent-050">
-				<WarningIcon size={20} className="mt-px flex-none text-accent-700" />
-				<p className="text-[13px] leading-relaxed text-accent-700">
-					Документ приведён в сокращении. Для публикации нужны: полная редакция политики, реквизиты
-					оператора персональных данных, срок хранения данных терапии и порядок обращения субъекта
-					данных — адрес и форма запроса.
+			<div className="flex flex-col gap-2">
+				<h1 className="font-display text-[22px] font-bold sm:text-[27px]">{POLICY_TITLE}</h1>
+				<p className="text-[13px] text-ink-3">
+					Актуальная версия — {POLICY_URL}
 				</p>
-			</Card>
+			</div>
 
-			{SECTIONS.map((section) => (
+			{POLICY_SECTIONS.map((section) => (
 				<Card key={section.title} className="flex flex-col gap-3">
 					<h2 className="font-display text-base font-bold">{section.title}</h2>
-					{section.paragraphs.map((paragraph) => (
-						<p key={paragraph} className="text-[14px] leading-relaxed text-ink-2">
-							{paragraph}
-						</p>
+					{section.blocks.map((block, index) => (
+						<Block key={index} block={block} />
 					))}
 				</Card>
 			))}

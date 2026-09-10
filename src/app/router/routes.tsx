@@ -29,7 +29,9 @@ export function AppRoutes() {
 			<Route path="/auth" element={<PublicOrHome><AuthPage /></PublicOrHome>} />
 			<Route path="/auth/reset" element={<ResetRequestPage />} />
 			<Route path="/auth/recovery" element={<ResetConfirmPage />} />
-			<Route path="/legal" element={<LegalPage />} />
+			{/* Адрес политики закреплён в самом её тексте: cpap-centre.ru/privacy. */}
+			<Route path="/privacy" element={<LegalPage />} />
+			<Route path="/legal" element={<Navigate to="/privacy" replace />} />
 
 			<Route element={<RequireAuth />}>
 				<Route path="/app" element={<AppShell />}>

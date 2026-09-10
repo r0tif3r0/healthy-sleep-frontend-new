@@ -304,11 +304,14 @@ export default function LandingPage() {
 							<a href="#devices">Поддерживаемые приборы</a>
 						</FooterColumn>
 						<FooterColumn title="Документы">
-							<Link to="/legal">Политика обработки персональных данных</Link>
+							<Link to="/privacy">Политика обработки персональных данных</Link>
 						</FooterColumn>
+						{/* Ссылками, а не текстом: с телефона по номеру звонят, а не переписывают его. */}
 						<FooterColumn title="Связь">
-							<span>[телефон центра]</span>
-							<span>[почта центра]</span>
+							<a href="tel:+79812467381" className="tnum">
+								+7 981 246 73 81
+							</a>
+							<a href="mailto:cpap-centre@mail.ru">cpap-centre@mail.ru</a>
 						</FooterColumn>
 					</div>
 				</div>
