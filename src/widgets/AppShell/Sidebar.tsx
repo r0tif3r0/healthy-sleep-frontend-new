@@ -40,7 +40,7 @@ export function Sidebar({ onLogout }: { onLogout: () => void }) {
 						<LogoMark size={31} />
 					</span>
 					<span className="flex min-w-0 flex-col gap-[3px]">
-						<span className="font-display text-base font-bold text-white">Здоровый сон</span>
+						<span className="font-display text-base font-bold text-white">СИПАП-ЦЕНТР</span>
 						<span className="truncate text-[10px] font-semibold tracking-[0.09em] text-[#7C93BC] uppercase">
 							{shellSubtitle(role)}
 						</span>

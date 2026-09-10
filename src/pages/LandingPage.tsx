@@ -9,16 +9,16 @@ import { Illustration, NightSky } from '@/shared/ui';
 
 const STEPS = [
 	{
-		title: 'Снимите данные с аппарата',
-		text: 'На главном экране прибора — кнопка «i», затем «SD» и «Сохранить данные». Аппарат запишет историю терапии на карту памяти.',
+		title: 'Сохраните данные на СИПАП-аппарате',
+		text: 'На главном экране прибора — кнопка «i», затем «SD» и «Сохранить данные». Аппарат запишет историю Вашей терапии на свою карту памяти.',
 	},
 	{
-		title: 'Укажите папку в кабинете',
-		text: 'Вставьте карту в компьютер, нажмите «Выбрать папку» и укажите карту целиком. Архив соберётся сам, дубли не создадутся.',
+		title: 'Укажите папку в личном кабинете на сайте',
+		text: 'Вставьте карту памяти СИПАП-аппарата в компьютер, нажмите «Выбрать папку» в личном кабинете и укажите карту памяти целиком.',
 	},
 	{
 		title: 'Смотрите динамику вместе с врачом',
-		text: 'Показатели появляются в вашем кабинете сразу, а лечащий врач видит их в своём — с графиками за любой период и отчётом на печать.',
+		text: 'Показатели появляются в вашем личном кабинете сразу, а лечащий врач видит их в своём.',
 	},
 ];
 
@@ -31,8 +31,7 @@ const PATIENT_POINTS = [
 const DOCTOR_POINTS = [
 	'Все подопечные в одном списке: прибор, давность выгрузки, контакты',
 	'Карточка пациента: графики за период и таблица по каждой ночи',
-	'Отчёт с русскими подписями и единицами — на печать или в PDF',
-	'Прикрепление пациента по адресу электронной почты',
+	'Отчёт с динамикой терапии — на печать или в PDF',
 ];
 
 export default function LandingPage() {
@@ -50,7 +49,7 @@ export default function LandingPage() {
 						</span>
 						{/* На узком экране название прячется: со знаком, темой и «Войти» оно переносилось на вторую строку. */}
 						<span className="hidden font-display text-[17px] font-bold whitespace-nowrap text-white sm:inline">
-							Здоровый сон
+							СИПАП-ЦЕНТР
 						</span>
 					</a>
 
@@ -62,10 +61,6 @@ export default function LandingPage() {
 					</div>
 
 					<div className="ml-auto flex flex-none items-center gap-2.5">
-						{/*
-						 * Тему можно было переключить только внутри кабинета: гость,
-						 * которому светлая страница режет глаза, до этой кнопки не доходил.
-						 */}
 						<button
 							type="button"
 							onClick={toggle}
@@ -90,14 +85,13 @@ export default function LandingPage() {
 							Телемониторинг СИПАП-терапии
 						</span>
 						<h1 className="font-display text-[clamp(32px,5vw,50px)] leading-[1.1] font-extrabold text-balance text-white">
-							Терапия работает?
+							Удаленный контроль
 							<br />
-							Теперь это видно, а не кажется.
+							СИПАП-терапии.
 						</h1>
 						<p className="max-w-[520px] text-[17px] leading-relaxed text-[#B8CBE8]">
-							Карта памяти СИПАП-аппарата хранит до 365 ночей: сколько вы спали в маске, сколько было
-							остановок дыхания, какими были давление и утечки. «Здоровый сон» читает эти карты
-							и показывает динамику — вам и вашему врачу.
+							Карта памяти Вашего СИПАП-аппарата хранит до 365 ночей: сколько часов вы спали в маске, сколько было остановок дыхания во сне, 
+							какими были давление и прочие важные показатели терапии. СИПАП-ЦЕНТР читает эти карты и показывает динамику — вам и вашему врачу.
 						</p>
 						<div className="flex flex-wrap items-center gap-3.5 pt-1">
 							<Link
@@ -127,10 +121,10 @@ export default function LandingPage() {
 			<section id="how" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-10 px-4 sm:px-8 lg:px-10 pt-19 pb-5">
 				<div className="flex max-w-[660px] flex-col gap-3">
 					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">
-						Три шага между картой памяти и приёмом у врача
+						Три шага между картой памяти вашего СИПАП-аппарата и приема у врача
 					</h2>
 					<p className="text-base leading-relaxed text-ink-2">
-						Не нужно ничего распаковывать, переименовывать и пересылать почтой. Карта — компьютер — кнопка.
+						Не нужно ничего распаковывать, переименовывать и пересылать электронной почтой. Вместо этого: карта — компьютер — кнопка
 					</p>
 				</div>
 
@@ -198,11 +192,11 @@ export default function LandingPage() {
 			<section id="indicators" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-4 sm:px-8 lg:px-10 pt-16 pb-5">
 				<div className="flex max-w-[620px] flex-col gap-3">
 					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">
-						{INDICATOR_COUNT} показателей терапии — из данных прибора, а не со слов
+						{INDICATOR_COUNT} показателей терапии в личном кабинете пациента и врача
 					</h2>
 					<p className="text-base leading-relaxed text-ink-2">
-						Всё, что записал аппарат за ночь, разбирается и приводится к единому виду — независимо
-						от производителя.
+						Всё, что записал СИПАП-аппарат за ночь, выводится в виде понятных графиков
+						и показателей — независимо от производителя СИПАП-аппарата.
 					</p>
 				</div>
 
@@ -226,18 +220,11 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			{/*
-			 * Приборы отдельной секцией: раньше они шли следом за показателями внутри
-			 * одного блока и отличались только цветом плашки — в тёмной теме два
-			 * оттенка ночи почти совпадали, и список читался как продолжение показателей.
-			 */}
 			<section id="devices" className="scroll-mt-8 mx-auto flex max-w-[1180px] flex-col gap-7 px-4 sm:px-8 lg:px-10 pt-16 pb-5">
 				<div className="flex max-w-[620px] flex-col gap-3">
 					<h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold">Поддерживаемые приборы</h2>
-					<p className="text-base leading-relaxed text-ink-2">
-						От модели зависит, как разбирается архив с карты: у каждого производителя своя раскладка
-						файлов. Прибор указывается в личном кабинете один раз.
-					</p>
+					{/* <p className="text-base leading-relaxed text-ink-2">
+					</p> */}
 				</div>
 
 				{/* Карточки без звёздного неба: до подвала оно идёт ещё дважды подряд и перестаёт читаться как приём. */}
@@ -262,12 +249,13 @@ export default function LandingPage() {
 					<NightSky seed={17} className="pointer-events-none absolute inset-0 h-full w-full opacity-75" />
 					<div className="relative flex max-w-[620px] flex-col gap-3.5">
 						<h2 className="font-display text-[clamp(22px,3vw,32px)] leading-tight font-bold text-balance text-white">
-							Учётную запись выдаёт ваш медицинский центр
+							Зарегистрируйся на сайте СИПАП-ЦЕНТР и держи под контролем эффективность своей СИПАП-терапии. 
+							Вместе с врачом.
 						</h2>
-						<p className="text-base leading-relaxed text-[#B8CBE8]">
+						{/* <p className="text-base leading-relaxed text-[#B8CBE8]">
 							Если вы уже проходите СИПАП-терапию в центре — войдите с почтой, на которую оформлено
 							наблюдение. Врачей и администраторов заводит администратор центра.
-						</p>
+						</p> */}
 					</div>
 					<Link
 						to="/auth"
@@ -294,7 +282,7 @@ export default function LandingPage() {
 							<span className="flex h-11 w-11 flex-none items-center justify-center rounded-[14px] bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,.5)]">
 								<LogoMark size={31} />
 							</span>
-							<span className="font-display text-[15px] font-bold text-white">Здоровый сон</span>
+							<span className="font-display text-[15px] font-bold text-white">СИПАП-ЦЕНТР</span>
 						</span>
 						<p className="text-[13px] leading-relaxed text-[#7C93BC]">
 							ООО «СИПАП ЦЕНТР» · ОГРН 1267800061462 · ИНН 7801753538

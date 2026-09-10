@@ -41,7 +41,7 @@ export function AuthLayout({ children }: { children: ReactNode }) {
 							<LogoMark size={32} />
 						</span>
 						<span className="flex flex-col gap-[3px]">
-							<span className="font-display text-lg font-bold text-white">Здоровый сон</span>
+							<span className="font-display text-lg font-bold text-white">СИПАП-ЦЕНТР</span>
 							<span className="text-[10.5px] font-semibold tracking-[0.09em] text-[#93AEDA] uppercase">
 								Мониторинг СИПАП-терапии
 							</span>

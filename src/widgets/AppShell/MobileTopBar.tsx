@@ -19,7 +19,7 @@ export function MobileTopBar({ onLogout }: { onLogout: () => void }) {
 			</span>
 
 			<span className="flex min-w-0 flex-col gap-px">
-				<span className="font-display text-[14.5px] leading-tight font-bold text-white">Здоровый сон</span>
+				<span className="font-display text-[14.5px] leading-tight font-bold text-white">СИПАП-ЦЕНТР</span>
 				<span className="truncate text-[9.5px] leading-tight font-semibold tracking-[0.09em] text-[#7C93BC] uppercase">
 					{shellSubtitle(role)}
 				</span>
